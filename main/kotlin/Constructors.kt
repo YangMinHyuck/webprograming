@@ -1,0 +1,42 @@
+package kr.mjc.YMH
+
+class Persona
+
+/* val이나 var가 붙으면 property.
+ * val은 getter만 var는 getter와 setter */
+class Personb(val firstName: String)
+
+/* property initializer와 initializer block
+   property initializer와 initializer block은 primary constructor의 일부 */
+class InitOrderDemo(name: String) { // name은 property가 아니다.
+    val firstProperty = "First property: $name" // property initializer
+
+    init {  // initializer block
+        println(firstProperty)
+    }
+}
+
+class Customer(name: String) {  // name은 property가 아니다.
+    val customerKey = name.uppercase() // property initializer
+}
+
+// constructor에서 default 값을 줄 수 있다.
+class Personc(val firstName: String, val lastName: String, var age: Int = 1)
+
+fun main() {
+    val pa = Persona()
+
+    val pb = Personb("Jacob")
+    println(pb.firstName)
+
+    val order = InitOrderDemo("hello")
+
+    val c = Customer("Rachel")
+    println(c.customerKey) // c.getCustomerKey()
+
+    val pc1 = Personc("Timothee", "Chalamet", 29)
+    val pc2 = Personc("Timothee", "Chalamet")  // age = 1 : 기본값
+    pc2.age = 29 // pc2.setAge(29)
+    val pc3 = Personc(lastName = "Chalamet", firstName = "Timothee") // named arg
+
+}
